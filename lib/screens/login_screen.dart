@@ -27,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
+          // ignore: prefer_const_constructors
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -35,43 +36,43 @@ class _LoginScreenState extends State<LoginScreen> {
               Flexible(
                 child: Hero(
                   tag: 'logo',
-                  child: Container(
+                  child: SizedBox(
                     height: 200.0,
                     child: Image.asset('images/logo.png'),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 48.0,
               ),
               TextField(
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey),
+                  style: const TextStyle(color: Colors.grey),
                   onChanged: (value) {
                     //Do something with the user input.
                     email = value;
                   },
                   decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Enter your email',
-                    hintStyle: TextStyle(color: Colors.deepPurple),
+                    hintStyle: const TextStyle(color: Colors.deepPurple),
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 8.0,
               ),
               TextField(
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   obscureText: true,
-                  style: TextStyle(color: Colors.grey),
+                  style: const TextStyle(color: Colors.grey),
                   onChanged: (value) {
                     //Do something with the user input.
                     password = value;
                   },
                   decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Enter your password',
-                    hintStyle: TextStyle(color: Colors.deepPurple),
+                    hintStyle: const TextStyle(color: Colors.deepPurple),
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 24.0,
               ),
               RoundedButtion(

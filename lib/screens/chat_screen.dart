@@ -34,7 +34,6 @@ class _ChatScreenState extends State<ChatScreen> {
       if (user != null) {
         loggedInUser = user;
         // print(loggedInUser.email);
-
       }
     } catch (e) {
       print(e);
@@ -79,7 +78,7 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            MessageStream(),
+            const MessageStream(),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -88,7 +87,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   Expanded(
                     child: TextField(
                       controller: messageTextController,
-                      style: TextStyle(color: Colors.black54),
+                      style: const TextStyle(color: Colors.black54),
                       onChanged: (value) {
                         //Do something with the user input.
                         messageText = value;
@@ -96,7 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
-                  FlatButton(
+                  ElevatedButton(
                     onPressed: () {
                       //Implement send functionality.
                       messageTextController.clear();
@@ -136,6 +135,7 @@ class MessageStream extends StatelessWidget {
             ));
           }
           final messages = snapshot.data!.docs.reversed;
+          print(' messages form fb $messages ');
           List<MessageBubble> messageBubbles = [];
           for (var message in messages) {
             final messageText = message.get('text');
@@ -144,6 +144,9 @@ class MessageStream extends StatelessWidget {
             // if (currentUser == messageSender) {
             //   // the message from the logged in user.
             // }
+            print(' messages form fb $messageText ');
+            print(' messages form fb $messageSender ');
+            print(' messages form  ${loggedInUser?.email} ');
 
             final messageBubble = MessageBubble(
               sender: messageSender,
@@ -182,20 +185,23 @@ class MessageBubble extends StatelessWidget {
         crossAxisAlignment:
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Text(
-            sender,
-            style: TextStyle(
-              fontSize: 12.0,
-              color: Colors.black54,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              sender,
+              style: const TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.deepPurple,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Material(
             borderRadius: isMe
-                ? BorderRadius.only(
+                ? const BorderRadius.only(
                     topLeft: Radius.circular(30.0),
                     bottomLeft: Radius.circular(30.0),
                     bottomRight: Radius.circular(30.0))
-                : BorderRadius.only(
+                : const BorderRadius.only(
                     topRight: Radius.circular(30.0),
                     bottomLeft: Radius.circular(30.0),
                     bottomRight: Radius.circular(30.0)),
